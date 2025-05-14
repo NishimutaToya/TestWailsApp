@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    
   <meta charset="UTF-8">
   <title>MyApp</title>
 </head>
@@ -10,41 +11,6 @@
     <pre id="logArea" style="background: #f4f4f4; padding: 1em; border: 1px solid #ccc;"></pre>
     <button id="notifyButton">通知を表示</button>
   </div>
-
-  <script type="module">
-    window.addEventListener("DOMContentLoaded", () => {
-      console.log("✅ DOM loaded");
-
-      async function waitForBackendReady() {
-        while (!window.backend || !window.backend.App) {
-          await new Promise((resolve) => setTimeout(resolve, 100));
-        }
-
-        console.log("✅ Wails backend ready");
-
-        const button = document.getElementById("notifyButton");
-        const output = document.getElementById("logArea");
-
-        if (!button) {
-          console.error("❌ ボタンが見つかりません！");
-          return;
-        }
-
-        button.addEventListener("click", async () => {
-          console.log("🚀 ボタンが押された！");
-          try {
-            const result = await window.backend.App.RunScript();
-            console.log("✅ RunScript 結果:", result);
-            output.textContent = result;
-          } catch (error) {
-            console.error("❌ RunScript エラー:", error);
-            output.textContent = "エラー: " + error;
-          }
-        });
-      }
-
-      waitForBackendReady();
-    });
-  </script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

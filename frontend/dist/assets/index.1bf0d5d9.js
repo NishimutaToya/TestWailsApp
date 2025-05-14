@@ -1,0 +1,10 @@
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const n of e)if(n.type==="childList")for(const r of n.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function s(e){const n={};return e.integrity&&(n.integrity=e.integrity),e.referrerpolicy&&(n.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?n.credentials="include":e.crossorigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(e){if(e.ep)return;e.ep=!0;const n=s(e);fetch(e.href,n)}})();const u="/assets/logo-universal.157a874a.png";function d(t){return window.go.main.App.Greet(t)}function a(){return window.go.main.App.RunScript()}document.querySelector("#app").innerHTML=`
+    <img id="logo" class="logo">
+    <div class="result" id="result">Please enter your name below \u{1F447}</div>
+    <div class="input-box" id="input">
+      <input class="input" id="name" type="text" autocomplete="off" />
+      <button class="btn" onclick="greet()">Greet</button>
+      <button class="btn" id="notifyButton">\u901A\u77E5\u3092\u8868\u793A</button> <!-- \u8FFD\u52A0 -->
+    </div>
+    <pre id="logArea" style="background: #f4f4f4; padding: 1em; margin-top: 1em; border: 1px solid #ccc;"></pre>
+`;document.getElementById("logo").src=u;let c=document.getElementById("name");c.focus();let f=document.getElementById("result");window.greet=function(){let t=c.value;t!==""&&d(t).then(o=>{f.innerText=o}).catch(o=>{console.error(o)})};const m=document.getElementById("notifyButton"),l=document.getElementById("logArea");m.addEventListener("click",async()=>{console.log("\u{1F680} \u30DC\u30BF\u30F3\u304C\u62BC\u3055\u308C\u305F\uFF01");try{const t=await a();console.log("\u2705 RunScript \u7D50\u679C:",t),l.textContent=t}catch(t){console.error("\u274C RunScript \u30A8\u30E9\u30FC:",t),l.textContent="\u30A8\u30E9\u30FC: "+t}});
